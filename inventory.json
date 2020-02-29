@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "id": "A1",
+      "name": "Skittles",
+      "price": 1,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": "A2",
+      "name": "Hershey's",
+      "price": 2,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": "A3",
+      "name": "M&Ms",
+      "price": 1,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": "A4",
+      "name": "Sneakers",
+      "price": 1.25,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": "A5",
+      "name": "Kit Kats",
+      "price": 1.25,
+      "stock": 20,
+      "maxStock": 20
+    }
+  ],
+  "coins": [
+    {
+      "id": 1,
+      "name": "nickel",
+      "value": 0.05,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": 2,
+      "name": "dime",
+      "value": 0.1,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": 3,
+      "name": "quarter",
+      "value": 0.25,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": 4,
+      "name": "loonie",
+      "value": 1,
+      "stock": 20,
+      "maxStock": 20
+    },
+    {
+      "id": 5,
+      "name": "toonie",
+      "value": 2,
+      "stock": 20,
+      "maxStock": 20
+    }
+  ]
+}
