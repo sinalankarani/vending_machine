@@ -155,4 +155,20 @@ describe("Vending Machine", () => {
       );
     });
   });
+  describe("when the change entered by the user is LESS than the amount for requested item", () => {
+    const coinInput = [
+      { id: 4, name: "loonie", value: 1, amount: 1 },
+      { id: 3, name: "quarter", value: 0.25, amount: 4 }
+    ];
+    const itemRequested = {
+      id: "A2",
+      name: "Hershey's",
+      price: 2
+    };
+    it("should return the extra money once the item has been chosen", () => {
+      expect(vendingMachine.exactMoney(coinInput, itemRequested)).toEqual(
+        "dispensed item: Hershey's"
+      );
+    });
+  });
 });
