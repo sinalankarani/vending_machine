@@ -193,7 +193,8 @@ describe("Vending Machine", () => {
     const itemRequested = {
       id: "A2",
       name: "Hershey's",
-      price: 2
+      price: 2,
+      stock: 20
     };
     it("should return the extra money once the item has been chosen", () => {
       expect(vendingMachine.reduceStock(coinInput, itemRequested)).toEqual(
