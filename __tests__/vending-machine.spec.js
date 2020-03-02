@@ -86,6 +86,20 @@ describe("Vending Machine", () => {
     });
   });
 
+  describe("when given the incorrect input", () => {
+    it("should throw error", () => {
+      expect(() => vendingMachine.checkInput("wrong input", "wrong")).toThrow(
+        "Not a valid input"
+      );
+      expect(() => vendingMachine.checkInput(2, 4)).toThrow(
+        "Not a valid input"
+      );
+      expect(() => vendingMachine.checkInput("2", { item: 4 })).toThrow(
+        "Not a valid input"
+      );
+    });
+  });
+
   describe("when the coin stock is low", () => {
     it("should restock coins", () => {
       vendingMachine.inventory.coins.forEach(coin => (coin.stock = 4));
@@ -168,6 +182,22 @@ describe("Vending Machine", () => {
     it("should return the extra money once the item has been chosen", () => {
       expect(vendingMachine.exactMoney(coinInput, itemRequested)).toEqual(
         "dispensed item: Hershey's"
+      );
+    });
+  });
+  describe("when the change entered by the user is LESS than the amount for requested item", () => {
+    const coinInput = [
+      { id: 4, name: "loonie", value: 1, amount: 1 },
+      { id: 3, name: "quarter", value: 0.25, amount: 4 }
+    ];
+    const itemRequested = {
+      id: "A2",
+      name: "Hershey's",
+      price: 2
+    };
+    it("should return the extra money once the item has been chosen", () => {
+      expect(vendingMachine.reduceStock(coinInput, itemRequested)).toEqual(
+        `Number of Hershey's: 19`
       );
     });
   });
