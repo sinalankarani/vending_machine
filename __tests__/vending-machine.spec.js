@@ -93,19 +93,51 @@ describe("Vending Machine", () => {
       expect(result).toEqual([20, 20, 20, 20, 20]);
     });
   });
-
-  describe("when user inserts coins and selects an option", () => {
-    const coinInput = { loonie: 1, quarter: 2 };
-    it("should check amount of coins", () => {
-      expect(vendingMachine.checkMoney(coinInput)).toEqual({});
+  describe("when the item stock is low", () => {
+    it("should restock items", () => {
+      vendingMachine.inventory.items.forEach(item => (item.stock = 4));
+      const result = vendingMachine.restockItems();
+      expect(result).toEqual([20, 20, 20, 20, 20]);
     });
   });
 
-  //   describe("when the change entered by the user is MORE than the amount for requested item", () => {
-  //     it("should return the extra money once the item has been chosen", () => {
-  //       expect(vendingMachine.moreMoney().toEqual(""));
-  //     });
-  //   });
+  describe("when user inserts coins", () => {
+    const coinInput = [
+      { id: 4, name: "loonie", value: 1, amount: 1 },
+      { id: 3, name: "quarter", value: 0.25, amount: 3 }
+    ];
+    it("should check total value of coins", () => {
+      expect(vendingMachine.checkMoney(coinInput)).toEqual(1.75);
+    });
+  });
+  describe("when user selects an option", () => {
+    const itemRequested = {
+      id: "A5",
+      name: "Kit Kats",
+      price: 1.25
+    };
+    it("should check cost of item", () => {
+      expect(vendingMachine.checkItemCost(itemRequested)).toEqual(1.25);
+    });
+  });
+
+  describe("when the change entered by the user is MORE than the amount for requested item", () => {
+    const coinInput = [
+      { id: 4, name: "loonie", value: 1, amount: 1 },
+      { id: 3, name: "quarter", value: 0.25, amount: 3 }
+    ];
+    const itemRequested = {
+      id: "A5",
+      name: "Kit Kats",
+      price: 1.25
+    };
+    it("should return the extra money once the item has been chosen", () => {
+      expect(vendingMachine.moreMoney(coinInput, itemRequested)).toEqual({
+        "dispensed item": "Kit Kats",
+        change: 0.5
+      });
+    });
+  });
   //   describe("when the change entered by the user is LESS than the amount for requested item", () => {
   //     it("should display the remaining amount required for the item", () => {
   //       expect(vendingMachine.lessMoney().toEqual(""));
